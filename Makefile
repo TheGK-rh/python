@@ -3,7 +3,7 @@ up:
 build:
 	docker compose build --no-cache --force-rm
 python:
-	docker compose exec python ash
+	docker compose exec python bash
 down:
 	docker compose down --remove-orphans
 destroy:
