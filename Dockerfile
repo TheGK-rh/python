@@ -1,21 +1,12 @@
-FROM python:3.9.6-buster
-USER root
+FROM python:3.10.1-slim-bullseye
 
 RUN apt-get update
-RUN apt-get -y install locales && \
-    localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
-RUN apt-get install -y vim less
 
-ENV LANG ja_JP.UTF-8
-ENV LANGUAGE ja_JP:ja
-ENV LC_ALL ja_JP.UTF-8
-ENV TZ JST-9
-ENV TERM xterm
+RUN mkdir -p /python/src
+COPY requirements.txt /python/src
 
-RUN mkdir -p /root/src
-COPY requirements.txt /root/src
-WORKDIR /root/src
+WORKDIR /python/src
 
-RUN pip install --upgrade pip
-RUN pip install --upgrade setuptools
-RUN pip install -r requirements.txt
+RUN pip3 install --upgrade pip3
+RUN pip3 install --upgrade setuptools
+RUN pip3 install -r requirements.txt
