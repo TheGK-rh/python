@@ -1,10 +1,7 @@
-version: '3'
+version: '3.9'
 services:
   python:
-    restart: always
     build: .
-    container_name: 'python'
-    working_dir: '/root/src'
     tty: true
     volumes:
-      - ${SRC_PATH}:/root/src
+      - ${SRC_PATH}:/python/src
