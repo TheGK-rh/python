@@ -1,0 +1,12 @@
+FROM arm64v8/python:3.10.1-slim-bullseye
+
+RUN apt update
+
+RUN mkdir -p /python/src
+COPY ./src/requirements.txt /python/src
+
+WORKDIR /python/src
+
+RUN pip install --upgrade pip \
+  && pip install --upgrade setuptools \
+  && pip install -r requirements.txt

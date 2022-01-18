@@ -1,7 +1,9 @@
 version: '3.9'
 services:
   python:
-    build: .
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
     tty: true
     volumes:
       - ${SRC_PATH}:/python/src

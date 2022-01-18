@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  chrome:
+    image: seleniarm/standalone-chromium
+    shm_size: 3g
+    ports:
+      - 4444:4444
+  python:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile.arm
+    tty: true
+    volumes:
+      - ${SRC_PATH}:/python/src
+    environment:
+      SELENIUM_URL: http://docker.for.mac.localhost:4444/wd/hub
