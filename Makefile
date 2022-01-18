@@ -14,6 +14,8 @@ down:
 	cd docker && docker compose down --remove-orphans
 arm-down:
 	cd docker && docker compose --file docker-compose.arm.yml down --remove-orphans
+destroy:
+	cd docker && docker compose down --rmi all --remove-orphans
 arm-destroy:
 	cd docker && docker compose --file docker-compose.arm.yml down --rmi all --remove-orphans
 ps:
