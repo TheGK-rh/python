@@ -1,12 +1,18 @@
-FROM python:3.10.1-slim-bullseye
+FROM python:3.9-slim-bullseye
 
-RUN apt-get update
+ENV PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update && apt install -y gcc libgl1-mesa-dev
 
 RUN mkdir -p /python/src
-COPY requirements.txt /python/src
+COPY ./src/requirements.txt /python/src
 
 WORKDIR /python/src
 
 RUN pip install --upgrade pip \
   && pip install --upgrade setuptools \
   && pip install -r requirements.txt
+
+EXPOSE 8000
+
+CMD ["uwsgi","--ini","uwsgi.ini"]
