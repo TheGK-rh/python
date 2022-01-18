@@ -7,6 +7,6 @@ COPY requirements.txt /python/src
 
 WORKDIR /python/src
 
-RUN pip install --upgrade pip
-RUN pip install --upgrade setuptools
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip \
+  && pip install --upgrade setuptools \
+  && pip install -r requirements.txt

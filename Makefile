@@ -1,21 +1,38 @@
 up:
-	docker compose up -d
+	cd docker && docker compose up -d
+arm-up:
+	cd docker && docker compose --file docker-compose.arm.yml up -d
 build:
-	docker compose build --no-cache --force-rm
+	cd docker && docker compose build --no-cache --force-rm
+arm-build:
+	cd docker && docker compose --file docker-compose.arm.yml build --no-cache --force-rm
 python:
-	docker compose exec python bash
+	cd docker && docker compose exec python bash
+arm-python:
+	cd docker && docker compose --file docker-compose.arm.yml exec python bash
 down:
-	docker compose down --remove-orphans
+	cd docker && docker compose down --remove-orphans
+arm-down:
+	cd docker && docker compose --file docker-compose.arm.yml down --remove-orphans
 destroy:
-	docker compose down --rmi all --remove-orphans
+	cd docker && docker compose down --rmi all --remove-orphans
+arm-destroy:
+	cd docker && docker compose --file docker-compose.arm.yml down --rmi all --remove-orphans
+ps:
+	cd docker && docker compose ps
+version:
+	cd docker && docker compose exec python python --version
+list:
+	cd docker && docker compose exec python pip list
+exec:
+	cd docker && docker compose exec python python main.py
+arm-exec:
+	cd docker && docker compose --file docker-compose.arm.yml exec python python main.py
 init:
 	@make build
 	@make up
-ps:
-	docker compose ps
-version:
-	docker exec -it python python --version
-list:
-	docker exec -it python pip list
-exec:
-	docker exec -it python python sample.py
+	@make exec
+arm-init:
+	@make arm-build
+	@make arm-up
+	@make arm-exec
