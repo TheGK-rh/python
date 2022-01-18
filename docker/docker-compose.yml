@@ -7,3 +7,11 @@ services:
     tty: true
     volumes:
       - ${SRC_PATH}:/python/src
+  nginx:
+    build:
+      context: ../
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - ${HTTP_PORT_HOST}:80
+    volumes:
+      - ./nginx/sites:/etc/nginx/sites-available

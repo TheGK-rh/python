@@ -1,8 +1,10 @@
 # Python勉強用リポジトリ
 
-## 通常使用
+## 通常使用（Flaskをインストールしています）
 * 環境構築
   * `make init`
+* Flaskにアクセス
+  * `http://localhost:9000/hello`にアクセスしレスポンスがあれば成功です。
 * コンテナ内に入る
   * `make python` or `cd docker && docker compose exec python bash`
 * コンテナ内でファイルを実行する
